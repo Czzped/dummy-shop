@@ -42,7 +42,7 @@ export function Products() {
                                     <h3>{price}$</h3> - <h3>{rating}</h3>
                                 </div>
                                 <div>
-                                    <Link to={"/" + id}>
+                                    <Link to={"/products/" + id}>
                                         <button>see more</button>
                                     </Link>
                                     <button>add to the cart</button>
