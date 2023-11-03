@@ -1,32 +1,19 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
-interface IProduct {
-    brand: string
-    category: string
-    description: string
-    discountPercentage: number
-    id: number
-    images: string[]
-    price: number
-    rating: number
-    stock: number
-    thumbnail: string
-    title: string
-}
+import { fetchProductsApi } from "../../../services/fetchProductsApi"
+import { IProduct } from "../../../types/IProduct"
 
 export function Products() {
     const [productsData, setProductsData] = useState([])
 
-    async function fetchProductsApi() {
-        const response = await fetch('https://dummyjson.com/products')
-        const productsData = await response.json()
+    async function getProducts() {
+        const productsData = await fetchProductsApi()
 
         setProductsData(productsData.products)
     }
 
     useEffect(() => {
-        fetchProductsApi()
+        getProducts()
     }, [])
 
     return (
