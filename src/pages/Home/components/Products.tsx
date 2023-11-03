@@ -20,10 +20,10 @@ export function Products() {
         <>
             {
                 productsData.length > 0 ?
-                    productsData.map(({ id, title, images, price, rating }: IProduct) => {
+                    productsData.map(({ id, title, thumbnail, price, rating }: IProduct) => {
                         return (
                             <div key={id}>
-                                <img src={images[0]} alt={`${title}-img`} />
+                                <img src={thumbnail} alt={`${title}-img`} />
                                 <h2>{title}</h2>
                                 <div>
                                     <h3>{price}$</h3> - <h3>{rating}</h3>

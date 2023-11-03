@@ -6,11 +6,11 @@ interface IProductInformationProps {
 }
 
 export function ProductInformation({ product }: IProductInformationProps) {
-    const { images, rating, title, description, stock, price } = product
+    const { thumbnail, rating, title, description, stock, price } = product
 
     return (
         <section>
-            <img src={images[0]} alt="product-img" />
+            <img src={thumbnail} alt="product-img" />
             <h3>
                 {rating} stars
             </h3>
