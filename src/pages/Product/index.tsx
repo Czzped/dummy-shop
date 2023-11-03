@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { fetchProductsApi } from "../../services/fetchProductsApi"
 import { useEffect, useState } from "react"
 import { IProduct } from "../../types/IProduct"
+import { ProductInformation } from "./components/ProductInformation"
 
 export function Product() {
     const { productId } = useParams()
@@ -26,13 +27,7 @@ export function Product() {
         <>
             {
                 product ?
-                    <section>
-                        <h1>
-                            {
-                                product.title
-                            }
-                        </h1>
-                    </section>
+                    <ProductInformation product={product} />
                     :
                     <h1>Product Not Founded.</h1>
             }
