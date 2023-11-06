@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { fetchProductsApi } from "../../../services/fetchProductsApi"
 import { IProduct } from "../../../types/IProduct"
 
-export function Products() {
-    const [productsData, setProductsData] = useState([])
+interface IPropsAttributes {
+    productsData: IProduct[]
+}
 
-    async function getProducts() {
-        const productsData = await fetchProductsApi()
 
-        setProductsData(productsData.products)
-    }
-
-    useEffect(() => {
-        getProducts()
-    }, [])
+export function Products({ productsData }: IPropsAttributes) {
 
     return (
         <>
