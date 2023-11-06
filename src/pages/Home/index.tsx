@@ -19,7 +19,7 @@ export function Home() {
 
     return (
         <section>
-            <SearchBar />
+            <SearchBar setProductsData={setProductsData} />
             <Products productsData={productsData} />
         </section>
     )
