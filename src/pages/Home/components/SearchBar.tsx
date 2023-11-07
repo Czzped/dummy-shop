@@ -5,7 +5,7 @@ interface IPropsAtributtes {
     setProductsData: React.Dispatch<SetStateAction<never[]>>
 }
 
-export function SearchBar({ setProductsData }: IPropsAtributtes) {
+export function SearchBar() {
     const [originalProductsData, setOriginalProductData] = useState([])
 
     async function getProducts() {

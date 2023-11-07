@@ -2,9 +2,15 @@ import { fetchProductsApi } from "../services/fetchProductsApi"
 import { useState, useEffect, createContext } from "react"
 import { IProduct } from "../types/IProduct"
 
-export const ProductsContext = createContext({})
+interface ProductsContextProps {
+    productsData: IProduct[],
+    updateProductsData: (newProductsData: IProduct[]) => void,
+    resetProductsData: () => IProduct[]
+}
 
-export function UseProductsContext({ children }: { children: React.ReactNode }) {
+export const ProductsContext = createContext({} as ProductsContextProps)
+
+export function ProductsContextProvider({ children }: { children: React.ReactNode }) {
     const [productsData, setProductsData] = useState(Array<IProduct>)
 
     useEffect(() => {
@@ -17,6 +23,8 @@ export function UseProductsContext({ children }: { children: React.ReactNode }) 
 
     function resetProductsData() {
         fetchProductsApi().then(products => setProductsData(products))
+
+        return productsData
     }
 
     const productsContext = {

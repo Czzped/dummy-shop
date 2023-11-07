@@ -8,9 +8,9 @@ export function Home() {
     const [productsData, setProductsData] = useState([])
 
     async function getProducts() {
-        const products = await fetchProductsApi()
+        const productsData = await fetchProductsApi()
 
-        setProductsData(products)
+        setProductsData(productsData.products)
     }
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export function Home() {
 
     return (
         <section>
-            <SearchBar setProductsData={setProductsData} />
+            <SearchBar />
             <Products productsData={productsData} />
         </section>
     )
