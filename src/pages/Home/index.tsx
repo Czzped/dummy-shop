@@ -8,9 +8,9 @@ export function Home() {
     const [productsData, setProductsData] = useState([])
 
     async function getProducts() {
-        const productsData = await fetchProductsApi()
+        const products = await fetchProductsApi()
 
-        setProductsData(productsData.products)
+        setProductsData(products)
     }
 
     useEffect(() => {
