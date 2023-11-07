@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom"
 import { IProduct } from "../../../types/IProduct"
-
-interface IPropsAttributes {
-    productsData: IProduct[]
-}
+import { useContext } from "react"
+import { ProductsContext } from "../../../context/ProductsContext"
 
 
-export function Products({ productsData }: IPropsAttributes) {
+export function Products() {
+    const { productsData } = useContext(ProductsContext)
 
     return (
         <>

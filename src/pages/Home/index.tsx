@@ -20,7 +20,7 @@ export function Home() {
     return (
         <section>
             <SearchBar />
-            <Products productsData={productsData} />
+            <Products />
         </section>
     )
 }
