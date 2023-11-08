@@ -9,7 +9,7 @@ export function Product() {
     const [product, setProduct] = useState<IProduct>()
 
     async function getProduct(id: string | undefined) {
-        const { products } = await fetchProductsApi()
+        const products = await fetchProductsApi()
         const result: IProduct = products.find((product: IProduct) => {
             if (id) {
                 return product.id === +id

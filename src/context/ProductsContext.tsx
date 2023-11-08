@@ -14,10 +14,6 @@ export const ProductsContext = createContext({} as ProductsContextProps)
 export function ProductsContextProvider({ children }: { children: React.ReactNode }) {
     const [productsData, setProductsData] = useState(Array<IProduct>)
 
-    useEffect(() => {
-        fetchProductsApi().then(products => setProductsData(products))
-    }, [])
-
     function updateProductsData(newProductsData: IProduct[]) {
         setProductsData(newProductsData)
     }
@@ -29,8 +25,6 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
     }
 
     function filterProducts(query: string) {
-        resetProductsData()
-
         const lowerCaseQuery = query.toLocaleLowerCase()
         const filteredProducts = productsData.filter(product => product.title.toLocaleLowerCase().includes(lowerCaseQuery))
 
@@ -43,6 +37,10 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
         resetProductsData,
         filterProducts
     }
+
+    useEffect(() => {
+        resetProductsData()
+    }, [])
 
     return (
         <ProductsContext.Provider value={productsContext}>
