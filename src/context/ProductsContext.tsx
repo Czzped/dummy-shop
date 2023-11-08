@@ -27,6 +27,15 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
         return productsData
     }
 
+    function filterProducts(query: string) {
+        resetProductsData()
+
+        const lowerCaseQuery = query.toLocaleLowerCase()
+        const filteredProducts = productsData.filter(product => product.title.toLocaleLowerCase().includes(query))
+
+        setProductsData(filteredProducts)
+    }
+
     const productsContext = {
         productsData,
         updateProductsData,
