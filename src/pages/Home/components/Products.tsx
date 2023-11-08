@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom"
 import { IProduct } from "../../../types/IProduct"
-import { useContext } from "react"
-import { ProductsContext } from "../../../context/ProductsContext"
+import { useProductsContext } from "../../../context/ProductsContext"
 
 
 export function Products() {
-    const { productsData } = useContext(ProductsContext)
+    const { productsData } = useProductsContext()
 
     return (
         <>

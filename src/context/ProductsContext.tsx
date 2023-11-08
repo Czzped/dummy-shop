@@ -1,5 +1,5 @@
 import { fetchProductsApi } from "../services/fetchProductsApi"
-import { useState, useEffect, createContext } from "react"
+import { useState, useEffect, createContext, useContext } from "react"
 import { IProduct } from "../types/IProduct"
 
 interface ProductsContextProps {
@@ -39,3 +39,5 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
         </ProductsContext.Provider>
     )
 }
+
+export const useProductsContext = () => useContext(ProductsContext)
