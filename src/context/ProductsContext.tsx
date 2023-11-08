@@ -5,7 +5,8 @@ import { IProduct } from "../types/IProduct"
 interface ProductsContextProps {
     productsData: IProduct[],
     updateProductsData: (newProductsData: IProduct[]) => void,
-    resetProductsData: () => IProduct[]
+    resetProductsData: () => IProduct[],
+    filterProducts: (query: string) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextProps)
@@ -39,7 +40,8 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
     const productsContext = {
         productsData,
         updateProductsData,
-        resetProductsData
+        resetProductsData,
+        filterProducts
     }
 
     return (
