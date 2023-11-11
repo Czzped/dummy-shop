@@ -12,14 +12,10 @@ interface ProductsContextProps {
 export const ProductsContext = createContext({} as ProductsContextProps)
 
 export function ProductsContextProvider({ children }: { children: React.ReactNode }) {
-    const [originalProductsData, setOriginalProductsData] = useState(Array<IProduct>)
     const [productsData, setProductsData] = useState(Array<IProduct>)
 
     useEffect(() => {
-        fetchProductsApi().then(products => {
-            setOriginalProductsData(products)
-            setProductsData(products)
-        })
+        fetchProductsApi().then(products => setProductsData(products))
     }, [])
 
     function updateProductsData(newProductsData: IProduct[]) {
@@ -32,9 +28,11 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
         return productsData
     }
 
-    function filterProducts(query: string) {
+    async function filterProducts(query: string) {
+        const productsData: IProduct[] = await fetchProductsApi().then(products => products)
+
         const lowerCaseQuery = query.toLocaleLowerCase()
-        const filteredProducts = originalProductsData.filter(product => product.title.toLocaleLowerCase().includes(lowerCaseQuery))
+        const filteredProducts = productsData.filter(product => product.title.toLocaleLowerCase().includes(lowerCaseQuery))
 
         setProductsData(filteredProducts)
     }
