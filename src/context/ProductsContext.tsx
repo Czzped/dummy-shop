@@ -41,6 +41,7 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
 
     useEffect(() => {
         fetchProductsApi().then(products => setOriginalProductsData(products))
+        resetProductsData()
     }, [])
 
     return (
