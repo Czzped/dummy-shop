@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
-import { useEffect, useContext, useState } from "react"
-import { ProductsContext } from "../../context/ProductsContext"
+import { useEffect, useState } from "react"
+import { useProductsContext } from "../../context/ProductsContext"
 import { ProductInformation } from "./components/ProductInformation"
 import { IProduct } from "../../types/IProduct"
 
@@ -8,7 +8,7 @@ export function Product() {
     const [product, setProduct] = useState<IProduct>()
 
     const { productId } = useParams()
-    const { filterProduct } = useContext(ProductsContext)
+    const { filterProduct } = useProductsContext()
 
     useEffect(() => {
         async function getProduct() {
