@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { IProduct } from "../../../types/IProduct"
 import { useProductsContext } from "../../../context/ProductsContext"
+import { Star, CurrencyDollar } from "phosphor-react";
 
 
 export function Products() {
@@ -16,7 +17,8 @@ export function Products() {
                                 <img src={thumbnail} alt={`${title}-img`} />
                                 <h2>{title}</h2>
                                 <div>
-                                    <h3>{price}$</h3> - <h3>{rating}</h3>
+                                    <h3><CurrencyDollar color="#108810" size={30} />{price}</h3>
+                                    <h3>{rating}<Star size={30} color="#ffce00" weight="fill" /></h3>
                                 </div>
                                 <div>
                                     <Link to={"/products/" + id}>

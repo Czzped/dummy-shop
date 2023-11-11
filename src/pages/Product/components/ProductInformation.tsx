@@ -1,5 +1,6 @@
 import { IProduct } from "../../../types/IProduct";
 import { Link } from "react-router-dom";
+import { Star, CurrencyDollar } from "phosphor-react";
 
 interface IProductInformationProps {
     product: IProduct
@@ -12,7 +13,7 @@ export function ProductInformation({ product }: IProductInformationProps) {
         <section>
             <img src={thumbnail} alt="product-img" />
             <h3>
-                {rating} stars
+                {rating} <Star size={30} color="#ffce00" weight="fill" />
             </h3>
             <h1>
                 {title}
@@ -26,7 +27,7 @@ export function ProductInformation({ product }: IProductInformationProps) {
                 </b>
             </span>
             <h1>
-                $ {price}
+                <CurrencyDollar color="#108810" size={30} /> {price}
             </h1>
             <div>
                 <Link to={"/"}>
