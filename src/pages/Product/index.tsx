@@ -1,26 +1,24 @@
 import { useParams } from "react-router-dom"
-import { fetchProductsApi } from "../../services/fetchProductsApi"
-import { useEffect, useState } from "react"
-import { IProduct } from "../../types/IProduct"
+import { useEffect, useContext, useState } from "react"
+import { ProductsContext } from "../../context/ProductsContext"
 import { ProductInformation } from "./components/ProductInformation"
+import { IProduct } from "../../types/IProduct"
 
 export function Product() {
-    const { productId } = useParams()
     const [product, setProduct] = useState<IProduct>()
 
-    async function getProduct(id: string | undefined) {
-        const products = await fetchProductsApi()
-        const result: IProduct = products.find((product: IProduct) => {
-            if (id) {
-                return product.id === +id
-            }
-        })
-
-        setProduct(result)
-    }
+    const { productId } = useParams()
+    const { filterProduct } = useContext(ProductsContext)
 
     useEffect(() => {
-        getProduct(productId)
+        async function getProduct() {
+            if (productId) {
+                const filteredProduct = await filterProduct(+productId)
+                setProduct(filteredProduct)
+            }
+        }
+
+        getProduct()
     }, [])
 
     return (
