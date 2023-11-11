@@ -15,11 +15,18 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
     const [originalProductsData, setOriginalProductsData] = useState(Array<IProduct>)
     const [productsData, setProductsData] = useState(Array<IProduct>)
 
+    useEffect(() => {
+        fetchProductsApi().then(products => {
+            setOriginalProductsData(products)
+            setProductsData(products)
+        })
+    }, [])
+
     function updateProductsData(newProductsData: IProduct[]) {
         setProductsData(newProductsData)
     }
 
-    function resetProductsData() {
+    function resetProductsData(originalProductsData = []) {
         setProductsData(originalProductsData)
 
         return productsData
@@ -38,11 +45,6 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
         resetProductsData,
         filterProducts
     }
-
-    useEffect(() => {
-        fetchProductsApi().then(products => setOriginalProductsData(products))
-        resetProductsData()
-    }, [])
 
     return (
         <ProductsContext.Provider value={productsContext}>
