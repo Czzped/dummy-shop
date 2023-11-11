@@ -24,7 +24,7 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
     }
 
     function resetProductsData(originalProductsData = []) {
-        setProductsData(originalProductsData)
+        fetchProductsApi().then(products => setProductsData(products))
 
         return productsData
     }
