@@ -11,10 +11,17 @@ export function SearchBar() {
         filterProducts(queryValue.toLowerCase())
     }
 
+    const debouncedHandleSearch = useCallback(debounce(handleProductsFilter, 500), []);
+
+    function handleSearch(ev: ChangeEvent<HTMLInputElement>) {
+        setLoadingMessage("Loading Search...")
+        debouncedHandleSearch(ev.target.value)
+    }
+
     return (
         <>
             <input type="text" placeholder="What Are You Looking For?"
-                onChange={ev => handleProductsFilter(ev.currentTarget.value)}
+                onChange={ev => handleSearch(ev)}
             />
             <br />
             <span>{loadingMessage}</span>
