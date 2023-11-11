@@ -3,26 +3,18 @@ import { useCallback, useState, ChangeEvent } from "react"
 import { useProductsContext } from "../../../context/ProductsContext";
 
 export function SearchBar() {
-    const { filterProducts, productsData } = useProductsContext()
+    const { filterProducts } = useProductsContext()
     const [loadingMessage, setLoadingMessage] = useState('')
 
     function handleProductsFilter(queryValue: string) {
         setLoadingMessage("")
-        filterProducts(queryValue)
-    }
-
-    const debouncedHandleSearch = useCallback(debounce(handleProductsFilter, 500), []);
-
-    function handleSearch(ev: ChangeEvent<HTMLInputElement>) {
-        console.log(productsData)
-        setLoadingMessage("Loading Search...")
-        debouncedHandleSearch(ev.target.value)
+        filterProducts(queryValue.toLowerCase())
     }
 
     return (
         <>
             <input type="text" placeholder="What Are You Looking For?"
-                onChange={ev => handleSearch(ev)}
+                onChange={ev => handleProductsFilter(ev.currentTarget.value)}
             />
             <br />
             <span>{loadingMessage}</span>
