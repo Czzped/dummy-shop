@@ -7,7 +7,7 @@ export function Home() {
         <section>
             <div>
                 <SearchBar />
-                < Dropdown />
+                <Dropdown />
             </div>
             <Products />
         </section>
