@@ -1,6 +1,8 @@
 import { IProduct } from "../../../types/IProduct";
+import { useEffect } from "react"
 import { Link } from "react-router-dom";
 import { Star, CurrencyDollar } from "phosphor-react";
+import { useProductsContext } from "../../../context/ProductsContext";
 
 interface IProductInformationProps {
     product: IProduct
@@ -8,6 +10,11 @@ interface IProductInformationProps {
 
 export function ProductInformation({ product }: IProductInformationProps) {
     const { thumbnail, rating, title, description, stock, price } = product
+    const { resetProductsData } = useProductsContext()
+
+    useEffect(() => {
+        resetProductsData()
+    }, [])
 
     return (
         <section>

@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom"
 import { IProduct } from "../../../types/IProduct"
-import { useEffect } from "react"
 import { useProductsContext } from "../../../context/ProductsContext"
 import { Star, CurrencyDollar } from "phosphor-react";
 
 
 export function Products() {
-    const { productsData, resetProductsData } = useProductsContext()
-
-    useEffect(() => {
-        resetProductsData()
-    }, [])
+    const { productsData, } = useProductsContext()
 
     return (
         <>
