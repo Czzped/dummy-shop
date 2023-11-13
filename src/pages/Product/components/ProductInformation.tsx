@@ -1,18 +1,17 @@
 import { IProduct } from "../../../types/IProduct";
 import { Link } from "react-router-dom";
 import { Star, CurrencyDollar } from "phosphor-react";
-import { SwiperCarousel } from "../../../components/ImagesCarousel";
 
 interface IProductInformationProps {
     product: IProduct
 }
 
 export function ProductInformation({ product }: IProductInformationProps) {
-    const { images, rating, title, description, stock, price } = product
+    const { thumbnail, rating, title, description, stock, price } = product
 
     return (
         <section>
-            <SwiperCarousel images={images} />
+            <img src={thumbnail} alt="product-thumbnail" />
             <h3>
                 {rating} <Star size={30} color="#ffce00" weight="fill" />
             </h3>
