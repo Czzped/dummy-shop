@@ -11,14 +11,14 @@ export function Products() {
         <>
             {
                 productsData.length > 0 ?
-                    productsData.map(({ id, title, thumbnail, price, rating }: IProduct) => {
+                    productsData.map(({ id, title, image, price, rating }: IProduct) => {
                         return (
                             <div key={id}>
-                                <img src={thumbnail} alt={`${title}-img`} />
+                                <img src={image} alt={`${title}-img`} />
                                 <h2>{title}</h2>
                                 <div>
                                     <h3><CurrencyDollar color="#108810" size={30} />{price}</h3>
-                                    <h3>{rating}<Star size={30} color="#ffce00" weight="fill" /></h3>
+                                    <h3>{rating.rate}<Star size={30} color="#ffce00" weight="fill" /></h3>
                                 </div>
                                 <div>
                                     <Link to={"/products/" + id}>

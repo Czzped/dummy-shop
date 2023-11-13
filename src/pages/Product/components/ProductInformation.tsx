@@ -9,7 +9,7 @@ interface IProductInformationProps {
 }
 
 export function ProductInformation({ product }: IProductInformationProps) {
-    const { thumbnail, rating, title, description, stock, price } = product
+    const { image, rating, title, description, price } = product
     const { resetProductsData } = useProductsContext()
 
     useEffect(() => {
@@ -18,21 +18,17 @@ export function ProductInformation({ product }: IProductInformationProps) {
 
     return (
         <section>
-            <img src={thumbnail} alt="product-thumbnail" />
-            <h3>
-                {rating} <Star size={30} color="#ffce00" weight="fill" />
-            </h3>
+            <img src={image} alt="product-thumbnail" />
             <h1>
                 {title}
             </h1>
+            <h3>
+                {rating.rate} <Star size={30} color="#ffce00" weight="fill" />
+            </h3>
+            <b>{rating.count} avaliations</b>
             <p>
                 {description}
             </p>
-            <span>
-                <b>
-                    {stock} in stock
-                </b>
-            </span>
             <h1>
                 <CurrencyDollar color="#108810" size={30} /> {price}
             </h1>
