@@ -7,7 +7,8 @@ interface ProductsContextProps {
     updateProductsData: (newProductsData: IProduct[]) => void,
     resetProductsData: () => IProduct[],
     filterProducts: (query: string) => void,
-    filterProduct: (id: number) => Promise<IProduct>
+    filterProduct: (id: number) => Promise<IProduct>,
+    filterCategory: (category: string) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextProps)
@@ -45,12 +46,21 @@ export function ProductsContextProvider({ children }: { children: React.ReactNod
         return filteredProduct
     }
 
+    async function filterCategory(category: string) {
+        const productsData: IProduct[] = await fetchProductsApi().then(products => products)
+
+        const filteredProducts = productsData.filter(product => product.category === category)
+
+        setProductsData(filteredProducts)
+    }
+
     const productsContext = {
         productsData,
         updateProductsData,
         resetProductsData,
         filterProducts,
-        filterProduct
+        filterProduct,
+        filterCategory
     }
 
     return (
