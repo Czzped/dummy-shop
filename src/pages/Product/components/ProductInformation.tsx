@@ -2,7 +2,7 @@ import { IProduct } from "../../../types/IProduct";
 import { useEffect } from "react"
 import { Link } from "react-router-dom";
 import { Star, CurrencyDollar } from "phosphor-react";
-import { useProductsContext } from "../../../context/ProductsContext";
+import { useProductsContext } from "../../../context/productsContext";
 
 interface IProductInformationProps {
     product: IProduct

@@ -1,4 +1,4 @@
-import { useProductsContext } from "../../../context/ProductsContext"
+import { useProductsContext } from "../../../context/productsContext"
 
 export function Dropdown() {
     const { resetProductsData, filterCategory } = useProductsContext()

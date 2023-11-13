@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react"
-import { useProductsContext } from "../../../context/ProductsContext";
+import { useProductsContext } from "../../../context/productsContext";
 
 export function SearchBar() {
     const { filterProducts } = useProductsContext()
