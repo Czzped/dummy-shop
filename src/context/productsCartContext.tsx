@@ -6,29 +6,35 @@ interface CartContextProps {
     productsCartVisibility: boolean,
     refreshCart: () => void,
     removeProductOnCart: (id: number) => void,
-    resetProductsCartVisibility: () => void
+    resetProductsCartVisibility: () => void,
+    addProductOnCart: (newProduct: IProduct) => void
 }
 
 export const ProductCartContext = createContext({} as CartContextProps)
 
 export function ProductsCartContextProvider({ children }: { children: React.ReactNode }) {
-    const [productsCart, setCartProducts] = useState(Array<IProduct>)
+    const [productsCart, setProductsCart] = useState(Array<IProduct>)
     const [productsCartVisibility, setProductsCartVisibility] = useState(false)
 
     function refreshCart() {
         const productsOnCart = localStorage.getItem('products-cart') ?? '[]'
         const productsOnCartJSON: IProduct[] = JSON.parse(productsOnCart)
 
-        setCartProducts(productsOnCartJSON)
+        setProductsCart(productsOnCartJSON)
     }
 
     function removeProductOnCart(id: number) {
         const filteredProductsOnCart = productsCart.filter(product => product.id !== id)
-        setCartProducts(filteredProductsOnCart)
+        setProductsCart(filteredProductsOnCart)
     }
 
     function resetProductsCartVisibility() {
         setProductsCartVisibility(!productsCartVisibility)
+    }
+
+    function addProductOnCart(newProduct: IProduct) {
+        const newProductsCart = [...productsCart, newProduct]
+        setProductsCart(newProductsCart)
     }
 
     useEffect(() => {
@@ -45,7 +51,8 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
         productsCartVisibility,
         refreshCart,
         removeProductOnCart,
-        resetProductsCartVisibility
+        resetProductsCartVisibility,
+        addProductOnCart
     }
 
     return (
