@@ -35,6 +35,11 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
         refreshCart()
     }, [])
 
+    useEffect(() => {
+        const stringfiedProductsCart = JSON.stringify(productsCart)
+        localStorage.setItem('products-cart', stringfiedProductsCart)
+    }, [productsCart])
+
     const productsCartContext = {
         productsCart,
         productsCartVisibility,
