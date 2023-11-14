@@ -1,6 +1,7 @@
 import { fetchProductsApi } from "../services/fetchProductsApi"
 import { useState, useEffect, createContext, useContext } from "react"
 import { IProduct } from "../types/IProduct"
+import { ReactNode } from "react"
 
 interface ProductsContextProps {
     productsData: IProduct[],
@@ -13,7 +14,7 @@ interface ProductsContextProps {
 
 export const ProductsContext = createContext({} as ProductsContextProps)
 
-export function ProductsContextProvider({ children }: { children: React.ReactNode }) {
+export function ProductsContextProvider({ children }: { children: ReactNode }) {
     const [productsData, setProductsData] = useState(Array<IProduct>)
 
     useEffect(() => {

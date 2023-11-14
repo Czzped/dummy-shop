@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react"
+import { useState, createContext, useEffect, useContext } from "react"
 import { IProduct } from "../types/IProduct"
 
 interface CartContextProps {
@@ -11,7 +11,7 @@ interface CartContextProps {
 
 export const ProductCartContext = createContext({} as CartContextProps)
 
-export function productsCartContextProvider({ children }: { children: React.ReactNode }) {
+export function ProductsCartContextProvider({ children }: { children: React.ReactNode }) {
     const [productsCart, setCartProducts] = useState(Array<IProduct>)
     const [productsCartVisibility, setProductsCartVisibility] = useState(false)
 
@@ -31,9 +31,9 @@ export function productsCartContextProvider({ children }: { children: React.Reac
         setProductsCartVisibility(!productsCartVisibility)
     }
 
-    if (productsCart.length === 0) {
+    useEffect(() => {
         refreshCart()
-    }
+    }, [])
 
     const productsCartContext = {
         productsCart,
