@@ -3,6 +3,7 @@ import { IProduct } from "../../../types/IProduct"
 import { useProductsContext } from "../../../context/productsContext"
 import { Star, CurrencyDollar } from "phosphor-react";
 import { useProductsCartContext } from "../../../context/productsCartContext";
+import { ToastContainer, toast } from "react-toastify";
 
 
 export function Products() {
@@ -11,6 +12,8 @@ export function Products() {
 
     function handleProductAditionToTheCart(product: IProduct) {
         addProductOnCart(product)
+
+        toast('🤑Produto adicionado')
     }
 
 
@@ -33,6 +36,18 @@ export function Products() {
                                         <button>see more</button>
                                     </Link>
                                     <button onClick={() => handleProductAditionToTheCart(product)}>add to the cart</button>
+                                    <ToastContainer
+                                        position="top-right"
+                                        autoClose={5000}
+                                        hideProgressBar={false}
+                                        newestOnTop={false}
+                                        closeOnClick
+                                        rtl={false}
+                                        pauseOnFocusLoss
+                                        draggable
+                                        pauseOnHover
+                                        theme="dark"
+                                    />
                                 </div>
                             </div>
                         )

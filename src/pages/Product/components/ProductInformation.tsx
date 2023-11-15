@@ -64,7 +64,7 @@ export function ProductInformation({ product }: IProductInformationProps) {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                    theme="light"
+                    theme="dark"
                 />
             </div>
         </section >
