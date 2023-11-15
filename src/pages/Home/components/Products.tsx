@@ -2,16 +2,24 @@ import { Link } from "react-router-dom"
 import { IProduct } from "../../../types/IProduct"
 import { useProductsContext } from "../../../context/productsContext"
 import { Star, CurrencyDollar } from "phosphor-react";
+import { useProductsCartContext } from "../../../context/productsCartContext";
 
 
 export function Products() {
-    const { productsData, } = useProductsContext()
+    const { productsData } = useProductsContext()
+    const { addProductOnCart } = useProductsCartContext()
+
+    function handleProductAditionToTheCart(product: IProduct) {
+        addProductOnCart(product)
+    }
+
 
     return (
         <>
             {
                 productsData.length > 0 ?
-                    productsData.map(({ id, title, image, price, rating }: IProduct) => {
+                    productsData.map((product: IProduct) => {
+                        const { id, title, image, price, rating } = product
                         return (
                             <div key={id}>
                                 <img src={image} alt={`${title}-img`} />
@@ -24,7 +32,7 @@ export function Products() {
                                     <Link to={"/products/" + id}>
                                         <button>see more</button>
                                     </Link>
-                                    <button>add to the cart</button>
+                                    <button onClick={() => handleProductAditionToTheCart(product)}>add to the cart</button>
                                 </div>
                             </div>
                         )
