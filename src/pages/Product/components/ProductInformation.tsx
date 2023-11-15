@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { Link } from "react-router-dom";
 import { Star, CurrencyDollar } from "phosphor-react";
 import { useProductsContext } from "../../../context/productsContext";
+import { useProductsCartContext } from "../../../context/productsCartContext";
 
 interface IProductInformationProps {
     product: IProduct
@@ -10,7 +11,14 @@ interface IProductInformationProps {
 
 export function ProductInformation({ product }: IProductInformationProps) {
     const { image, rating, title, description, price } = product
+
     const { resetProductsData } = useProductsContext()
+    const { addProductOnCart } = useProductsCartContext()
+
+    function handleProductAditionToTheCart(product: IProduct) {
+        addProductOnCart(product)
+    }
+
 
     useEffect(() => {
         resetProductsData()
@@ -38,7 +46,7 @@ export function ProductInformation({ product }: IProductInformationProps) {
                         back
                     </button>
                 </Link>
-                <button>
+                <button onClick={() => handleProductAditionToTheCart(product)}>
                     add to the cart
                 </button>
             </div>
