@@ -10,11 +10,6 @@ export function Products() {
     const { productsData } = useProductsContext()
     const { addProductOnCart } = useProductsCartContext()
 
-    function handleProductAditionToTheCart(product: IProduct) {
-        addProductOnCart(product)
-    }
-
-
     return (
         <>
             {
