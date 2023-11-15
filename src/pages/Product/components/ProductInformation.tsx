@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Star, CurrencyDollar } from "phosphor-react";
 import { useProductsContext } from "../../../context/productsContext";
 import { useProductsCartContext } from "../../../context/productsCartContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface IProductInformationProps {
@@ -16,12 +16,6 @@ export function ProductInformation({ product }: IProductInformationProps) {
 
     const { resetProductsData } = useProductsContext()
     const { addProductOnCart } = useProductsCartContext()
-
-    function handleProductAditionToTheCart(product: IProduct) {
-        addProductOnCart(product)
-
-        toast('🤑Produto adicionado')
-    }
 
 
     useEffect(() => {
@@ -50,7 +44,7 @@ export function ProductInformation({ product }: IProductInformationProps) {
                         back
                     </button>
                 </Link>
-                <button onClick={() => handleProductAditionToTheCart(product)}>
+                <button onClick={() => addProductOnCart(product)}>
                     add to the cart
                 </button>
 

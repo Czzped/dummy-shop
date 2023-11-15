@@ -1,5 +1,6 @@
 import { useState, createContext, useEffect, useContext } from "react"
 import { IProduct } from "../types/IProduct"
+import { toast } from "react-toastify"
 
 interface CartContextProps {
     productsCart: IProduct[],
@@ -35,6 +36,8 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
     function addProductOnCart(newProduct: IProduct) {
         const newProductsCart = [...productsCart, newProduct]
         setProductsCart(newProductsCart)
+
+        toast('🤑Produto adicionado')
     }
 
     useEffect(() => {
