@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { IProduct } from "../../../types/IProduct"
-import { useProductsContext } from "../../../context/productsContext"
+import { useProductsContext } from "../../../context/productContext"
 import { Star, CurrencyDollar } from "phosphor-react";
 import { useProductsCartContext } from "../../../context/productsCartContext";
 import { ToastContainer } from "react-toastify";

@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/route";
-import { ProductsContextProvider } from "./context/productsContext";
+import { ProductsContextProvider } from "./context/productContext";
 import { ProductsCartContextProvider } from "./context/productsCartContext";
 
 export function App() {
