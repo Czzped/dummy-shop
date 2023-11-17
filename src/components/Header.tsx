@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { ShoppingCartSimple } from "phosphor-react"
 
 export function Header() {
     return (
@@ -12,8 +13,11 @@ export function Header() {
                             home
                         </Link>
                     </li>
+                    <li>
+                        <ShoppingCartSimple size={30} />
+                    </li>
                 </ul>
             </nav>
-        </header>
+        </header >
     )
 }
