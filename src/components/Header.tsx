@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import { ShoppingCartSimple, House } from "phosphor-react"
+import { useProductsCartContext } from "../context/productsCartContext"
 
 export function Header() {
+    const { resetProductsCartVisibility } = useProductsCartContext()
+
     return (
         <header>
             <nav>
@@ -14,7 +17,7 @@ export function Header() {
                         </Link>
                     </li>
                     <li>
-                        <ShoppingCartSimple size={30} />
+                        <ShoppingCartSimple onClick={() => resetProductsCartVisibility()} size={30} />
                     </li>
                 </ul>
             </nav>
