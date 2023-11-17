@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ShoppingCartSimple } from "phosphor-react"
+import { ShoppingCartSimple, House } from "phosphor-react"
 
 export function Header() {
     return (
@@ -10,7 +10,7 @@ export function Header() {
                 <ul>
                     <li>
                         <Link to={"/"}>
-                            home
+                            <House size={30} />
                         </Link>
                     </li>
                     <li>
