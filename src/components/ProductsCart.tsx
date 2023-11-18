@@ -3,7 +3,7 @@ import { CurrencyDollar } from "phosphor-react";
 import { Link } from "react-router-dom";
 
 export function ProductsCart() {
-    const { productsCartVisibility, productsCart } = useProductsCartContext()
+    const { productsCartVisibility, removeProductOnCart, productsCart } = useProductsCartContext()
     const totalAmount = productsCart.reduce((totalAmount, { price }) => {
         return totalAmount + price
     }, 0)
@@ -23,7 +23,7 @@ export function ProductsCart() {
                                             <h2>{product.title}</h2>
                                             <h2><CurrencyDollar size={24} color="#108810" />{product.price}</h2>
                                             <div>
-                                                <button>remove product</button>
+                                                <button onClick={() => removeProductOnCart(product.id)}>remove product</button>
                                                 <Link to={`products/${product.id}`}>
                                                     <button>see product</button>
                                                 </Link>
