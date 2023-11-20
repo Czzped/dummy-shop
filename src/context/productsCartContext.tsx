@@ -40,10 +40,14 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
             const newProductsCart = [...productsCart, newProduct]
             setProductsCart(newProductsCart)
 
-            return toast('🤑Product added')
+            return toast.success('🤑Product added', {
+                theme: "dark",
+            });
         }
 
-        toast('❗Product already added')
+        return toast.error('Product already added', {
+            theme: "dark",
+        });
 
     }
 

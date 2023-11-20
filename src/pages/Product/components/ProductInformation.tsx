@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Star, CurrencyDollar } from "phosphor-react";
 import { useProductsContext } from "../../../context/productContext";
 import { useProductsCartContext } from "../../../context/productsCartContext";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface IProductInformationProps {
@@ -47,19 +46,6 @@ export function ProductInformation({ product }: IProductInformationProps) {
                 <button onClick={() => addProductOnCart(product)}>
                     add to the cart
                 </button>
-
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="dark"
-                />
             </div>
         </section >
     )
