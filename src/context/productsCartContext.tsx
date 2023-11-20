@@ -34,10 +34,17 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
     }
 
     function addProductOnCart(newProduct: IProduct) {
-        const newProductsCart = [...productsCart, newProduct]
-        setProductsCart(newProductsCart)
+        const productCartValidation = productsCart.find(product => product.id === newProduct.id)
 
-        toast('🤑Produto adicionado')
+        if (!productCartValidation) {
+            const newProductsCart = [...productsCart, newProduct]
+            setProductsCart(newProductsCart)
+
+            return toast('🤑Product added')
+        }
+
+        toast('❗Product already added')
+
     }
 
     useEffect(() => {
