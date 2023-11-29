@@ -1,5 +1,4 @@
-import { fetchProductsApi } from "../services/fetchProductsApi"
-import { useState, useEffect, createContext, useContext } from "react"
+import { useState, createContext, useContext } from "react"
 import { ReactNode } from "react"
 import Stripe from "stripe"
 import { productsData } from "../lib/stripe"
@@ -7,7 +6,7 @@ import { productsData } from "../lib/stripe"
 interface ProductsContextProps {
     products: Stripe.Product[],
     updateProductsData: (newProductsData: Stripe.Product[]) => void,
-    resetProductsData: () => Stripe.Product[],
+    resetProductsData: () => void
     filterProducts: (query: string) => void,
     filterProduct: (id: string) => Promise<Stripe.Product>,
     filterCategory: (category: string) => void
@@ -16,20 +15,14 @@ interface ProductsContextProps {
 export const ProductsContext = createContext({} as ProductsContextProps)
 
 export function ProductsContextProvider({ children }: { children: ReactNode }) {
-    const [products, setProducts] = useState(Array<Stripe.Product>)
-
-    useEffect(() => {
-        setProducts(productsData)
-    }, [])
+    const [products, setProducts] = useState(productsData)
 
     function updateProductsData(newProductsData: Stripe.Product[]) {
         setProducts(newProductsData)
     }
 
     function resetProductsData() {
-        fetchProductsApi().then(products => setProducts(products))
-
-        return productsData
+        setProducts(productsData)
     }
 
     async function filterProducts(query: string) {
