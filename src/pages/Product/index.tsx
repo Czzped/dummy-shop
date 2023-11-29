@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { useProductsContext } from "../../context/productContext"
+import { useProductsContext } from "../../context/productsContext"
 import { ProductInformation } from "./components/ProductInformation"
 import { IProduct } from "../../types/IProduct"
 

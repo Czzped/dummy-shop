@@ -2,7 +2,7 @@ import { IProduct } from "../../../types/IProduct";
 import { useEffect } from "react"
 import { Link } from "react-router-dom";
 import { Star, CurrencyDollar } from "phosphor-react";
-import { useProductsContext } from "../../../context/productContext";
+import { useProductsContext } from "../../../context/productsContext";
 import { useProductsCartContext } from "../../../context/productsCartContext";
 import "react-toastify/dist/ReactToastify.css";
 
