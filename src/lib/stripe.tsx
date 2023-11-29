@@ -10,7 +10,9 @@ export const stripe = new Stripe(
     }
 );
 
-export const { data } = await stripe.products.list({
+const { data } = await stripe.products.list({
     expand: ["data.default_price"],
     limit: 1000
 });
+
+export const productsData = data.filter(product => product.metadata.available !== 'false')
