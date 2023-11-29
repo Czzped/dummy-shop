@@ -1,16 +1,15 @@
 import { fetchProductsApi } from "../services/fetchProductsApi"
 import { useState, useEffect, createContext, useContext } from "react"
-import { IProduct } from "../types/IProduct"
 import { ReactNode } from "react"
 import Stripe from "stripe"
 import { productsData } from "../lib/stripe"
 
 interface ProductsContextProps {
-    productsData: Stripe.Product[],
+    products: Stripe.Product[],
     updateProductsData: (newProductsData: Stripe.Product[]) => void,
     resetProductsData: () => Stripe.Product[],
     filterProducts: (query: string) => void,
-    filterProduct: (id: number) => Promise<IProduct>,
+    filterProduct: (id: number) => Promise<Stripe.Product>,
     filterCategory: (category: string) => void
 }
 
@@ -34,8 +33,6 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
     }
 
     async function filterProducts(query: string) {
-        const productsData: Stripe.Product[] = await fetchProductsApi().then(products => products)
-
         const lowerCaseQuery = query.toLocaleLowerCase()
         const filteredProducts = productsData.filter(product => product.name.toLocaleLowerCase().includes(lowerCaseQuery))
 
@@ -43,22 +40,19 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
     }
 
     async function filterProduct(id: number) {
-        const productsData: IProduct[] = await fetchProductsApi().then(products => products)
-        const filteredProduct = productsData.find(product => product.id === id) as IProduct
+        const filteredProduct = productsData.find(product => +product.id === id) as Stripe.Product
 
         return filteredProduct
     }
 
     async function filterCategory(category: string) {
-        const productsData: Stripe.Product[] = await fetchProductsApi().then(products => products)
-
         const filteredProducts = productsData.filter(product => product.metadata.category === category)
 
         setProducts(filteredProducts)
     }
 
     const productsContext = {
-        productsData,
+        products,
         updateProductsData,
         resetProductsData,
         filterProducts,
