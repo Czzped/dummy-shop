@@ -1,5 +1,4 @@
 import { useState, createContext, useEffect, useContext } from "react"
-import { IProduct } from "../types/IProduct"
 import { toast } from "react-toastify"
 import Stripe from "stripe"
 

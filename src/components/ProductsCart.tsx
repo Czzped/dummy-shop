@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 
 export function ProductsCart() {
     const { productsCartVisibility, removeProductOnCart, productsCart } = useProductsCartContext()
-    const totalAmount = productsCart.reduce((totalAmount, { price }) => {
+    const totalAmount = productsCart.reduce((totalAmount, { default_price }) => {
+        //@ts-ignore
+        const price = (default_price.unit_amount) / 100
+
         return totalAmount + price
     }, 0)
 
@@ -16,12 +19,15 @@ export function ProductsCart() {
                     <div>
                         {
                             productsCart.map(product => {
+                                //@ts-ignore
+                                const price = (product.default_price.unit_amount) / 100
+
                                 return (
-                                    <div>
-                                        <img src={product.image} alt="product-img" />
+                                    <div key={product.id}>
+                                        <img src={product.images[0]} alt="product-img" />
                                         <div>
-                                            <h2>{product.title}</h2>
-                                            <h2><CurrencyDollar size={24} color="#108810" />{product.price}</h2>
+                                            <h2>{product.name}</h2>
+                                            <h2><CurrencyDollar size={24} color="#108810" />{price}</h2>
                                             <div>
                                                 <button onClick={() => removeProductOnCart(product.id)}>remove product</button>
                                                 <Link to={`products/${product.id}`}>
