@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useProductsContext } from "../../context/productsContext"
 import { ProductInformation } from "./components/ProductInformation"
-import { IProduct } from "../../types/IProduct"
+import Stripe from "stripe"
 
 export function Product() {
-    const [product, setProduct] = useState<IProduct>()
+    const [product, setProduct] = useState<Stripe.Product>()
 
     const { productId } = useParams()
     const { filterProduct } = useProductsContext()
