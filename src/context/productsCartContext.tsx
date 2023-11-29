@@ -1,30 +1,31 @@
 import { useState, createContext, useEffect, useContext } from "react"
 import { IProduct } from "../types/IProduct"
 import { toast } from "react-toastify"
+import Stripe from "stripe"
 
 interface CartContextProps {
-    productsCart: IProduct[],
+    productsCart: Stripe.Product[],
     productsCartVisibility: boolean,
     refreshCart: () => void,
-    removeProductOnCart: (id: number) => void,
+    removeProductOnCart: (id: string) => void,
     resetProductsCartVisibility: () => void,
-    addProductOnCart: (newProduct: IProduct) => void
+    addProductOnCart: (newProduct: Stripe.Product) => void
 }
 
 export const ProductCartContext = createContext({} as CartContextProps)
 
 export function ProductsCartContextProvider({ children }: { children: React.ReactNode }) {
-    const [productsCart, setProductsCart] = useState(Array<IProduct>)
+    const [productsCart, setProductsCart] = useState(Array<Stripe.Product>)
     const [productsCartVisibility, setProductsCartVisibility] = useState(false)
 
     function refreshCart() {
         const productsOnCart = localStorage.getItem('products-cart') ?? '[]'
-        const productsOnCartJSON: IProduct[] = JSON.parse(productsOnCart)
+        const productsOnCartJSON: Stripe.Product[] = JSON.parse(productsOnCart)
 
         setProductsCart(productsOnCartJSON)
     }
 
-    function removeProductOnCart(id: number) {
+    function removeProductOnCart(id: string) {
         const filteredProductsOnCart = productsCart.filter(product => product.id !== id)
         setProductsCart(filteredProductsOnCart)
     }
@@ -33,7 +34,7 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
         setProductsCartVisibility(!productsCartVisibility)
     }
 
-    function addProductOnCart(newProduct: IProduct) {
+    function addProductOnCart(newProduct: Stripe.Product) {
         const productCartValidation = productsCart.find(product => product.id === newProduct.id)
 
         if (!productCartValidation) {
