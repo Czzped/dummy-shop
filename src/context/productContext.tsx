@@ -2,11 +2,13 @@ import { fetchProductsApi } from "../services/fetchProductsApi"
 import { useState, useEffect, createContext, useContext } from "react"
 import { IProduct } from "../types/IProduct"
 import { ReactNode } from "react"
+import Stripe from "stripe"
+import { productsData } from "../lib/stripe"
 
 interface ProductsContextProps {
-    productsData: IProduct[],
-    updateProductsData: (newProductsData: IProduct[]) => void,
-    resetProductsData: () => IProduct[],
+    productsData: Stripe.Product[],
+    updateProductsData: (newProductsData: Stripe.Product[]) => void,
+    resetProductsData: () => Stripe.Product[],
     filterProducts: (query: string) => void,
     filterProduct: (id: number) => Promise<IProduct>,
     filterCategory: (category: string) => void
@@ -15,29 +17,29 @@ interface ProductsContextProps {
 export const ProductsContext = createContext({} as ProductsContextProps)
 
 export function ProductsContextProvider({ children }: { children: ReactNode }) {
-    const [productsData, setProductsData] = useState(Array<IProduct>)
+    const [products, setProducts] = useState(Array<Stripe.Product>)
 
     useEffect(() => {
-        fetchProductsApi().then(products => setProductsData(products))
+        setProducts(productsData)
     }, [])
 
-    function updateProductsData(newProductsData: IProduct[]) {
-        setProductsData(newProductsData)
+    function updateProductsData(newProductsData: Stripe.Product[]) {
+        setProducts(newProductsData)
     }
 
     function resetProductsData() {
-        fetchProductsApi().then(products => setProductsData(products))
+        fetchProductsApi().then(products => setProducts(products))
 
         return productsData
     }
 
     async function filterProducts(query: string) {
-        const productsData: IProduct[] = await fetchProductsApi().then(products => products)
+        const productsData: Stripe.Product[] = await fetchProductsApi().then(products => products)
 
         const lowerCaseQuery = query.toLocaleLowerCase()
-        const filteredProducts = productsData.filter(product => product.title.toLocaleLowerCase().includes(lowerCaseQuery))
+        const filteredProducts = productsData.filter(product => product.name.toLocaleLowerCase().includes(lowerCaseQuery))
 
-        setProductsData(filteredProducts)
+        setProducts(filteredProducts)
     }
 
     async function filterProduct(id: number) {
@@ -48,11 +50,11 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
     }
 
     async function filterCategory(category: string) {
-        const productsData: IProduct[] = await fetchProductsApi().then(products => products)
+        const productsData: Stripe.Product[] = await fetchProductsApi().then(products => products)
 
-        const filteredProducts = productsData.filter(product => product.category === category)
+        const filteredProducts = productsData.filter(product => product.metadata.category === category)
 
-        setProductsData(filteredProducts)
+        setProducts(filteredProducts)
     }
 
     const productsContext = {
