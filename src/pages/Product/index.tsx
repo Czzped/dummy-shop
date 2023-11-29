@@ -13,7 +13,7 @@ export function Product() {
     useEffect(() => {
         async function getProduct() {
             if (productId) {
-                const filteredProduct = await filterProduct(+productId)
+                const filteredProduct = await filterProduct(productId)
                 setProduct(filteredProduct)
             }
         }

@@ -9,7 +9,7 @@ interface ProductsContextProps {
     updateProductsData: (newProductsData: Stripe.Product[]) => void,
     resetProductsData: () => Stripe.Product[],
     filterProducts: (query: string) => void,
-    filterProduct: (id: number) => Promise<Stripe.Product>,
+    filterProduct: (id: string) => Promise<Stripe.Product>,
     filterCategory: (category: string) => void
 }
 
@@ -39,8 +39,8 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
         setProducts(filteredProducts)
     }
 
-    async function filterProduct(id: number) {
-        const filteredProduct = productsData.find(product => +product.id === id) as Stripe.Product
+    async function filterProduct(id: string) {
+        const filteredProduct = productsData.find(product => product.id === id) as Stripe.Product
 
         return filteredProduct
     }
