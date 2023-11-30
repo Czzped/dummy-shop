@@ -78,16 +78,16 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
         };
 
         try {
+            localStorage.setItem('products-cart', '[]')
+
             //@ts-ignore
             const { error } = await Stripe?.redirectToCheckout(checkoutOptions);
             console.log("Stripe checkout error", error);
-
         } catch (err) {
             toast.error('Fail to redirect to checkout!')
             console.log(err)
         } finally {
             setLoading(false);
-            localStorage.setItem('products-cart', '[]')
         }
     }
 
