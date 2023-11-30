@@ -1,8 +1,12 @@
 import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
 
+let stripePromise: any
+
 export async function getStripeData() {
-    const stripePromise = loadStripe(String(import.meta.env.VITE_STRIPE_PUBLIC_KEY))
+    if (!stripePromise) {
+        stripePromise = loadStripe(String(import.meta.env.VITE_STRIPE_PUBLIC_KEY))
+    }
 
     const stripe = new Stripe(
         import.meta.env.VITE_STRIPE_SECRET_KEY,
