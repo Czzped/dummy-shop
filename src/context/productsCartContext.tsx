@@ -1,14 +1,17 @@
 import { useState, createContext, useEffect, useContext } from "react"
 import { toast } from "react-toastify"
 import Stripe from "stripe"
+import { stripePromise } from "../lib/stripe"
 
 interface CartContextProps {
     productsCart: Stripe.Product[],
     productsCartVisibility: boolean,
+    isLoading: boolean,
     refreshCart: () => void,
     removeProductOnCart: (id: string) => void,
     resetProductsCartVisibility: () => void,
-    addProductOnCart: (newProduct: Stripe.Product) => void
+    addProductOnCart: (newProduct: Stripe.Product) => void,
+    buyProductsOnCart: () => void
 }
 
 export const ProductCartContext = createContext({} as CartContextProps)
@@ -16,6 +19,7 @@ export const ProductCartContext = createContext({} as CartContextProps)
 export function ProductsCartContextProvider({ children }: { children: React.ReactNode }) {
     const [productsCart, setProductsCart] = useState(Array<Stripe.Product>)
     const [productsCartVisibility, setProductsCartVisibility] = useState(false)
+    const [isLoading, setLoading] = useState(false)
 
     function refreshCart() {
         const productsOnCart = localStorage.getItem('products-cart') ?? '[]'
@@ -40,15 +44,50 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
             const newProductsCart = [...productsCart, newProduct]
             setProductsCart(newProductsCart)
 
-            return toast.success('🤑Product added', {
-                theme: "dark",
-            });
+            return toast.success('🤑Product added');
         }
 
-        return toast.error('Product already added', {
-            theme: "dark",
-        });
+        return toast.error('Product already added');
 
+    }
+
+    async function buyProductsOnCart() {
+        if (productsCart.length === 0) {
+            return toast.error('Your cart are empty!')
+        }
+
+        const Stripe = await stripePromise
+        setLoading(true);
+
+        const itens = productsCart.map(productsCart => {
+            const productsInformation = {
+                //@ts-ignore
+                price: productsCart.default_price.id,
+                quantity: 1
+            }
+
+            return productsInformation
+        })
+
+        const checkoutOptions = {
+            lineItems: itens,
+            mode: "subscription",
+            successUrl: `${window.location.origin}/success`,
+            cancelUrl: `${window.location.origin}/cancel`
+        };
+
+        try {
+            //@ts-ignore
+            const { error } = await Stripe?.redirectToCheckout(checkoutOptions);
+            console.log("Stripe checkout error", error);
+
+        } catch (err) {
+            toast.error('Fail to redirect to checkout!')
+            console.log(err)
+        } finally {
+            setLoading(false);
+            localStorage.setItem('products-cart', '[]')
+        }
     }
 
     useEffect(() => {
@@ -63,10 +102,12 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
     const productsCartContext = {
         productsCart,
         productsCartVisibility,
+        isLoading,
         refreshCart,
         removeProductOnCart,
         resetProductsCartVisibility,
-        addProductOnCart
+        addProductOnCart,
+        buyProductsOnCart
     }
 
     return (

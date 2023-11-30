@@ -1,6 +1,9 @@
+import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
 
-export const stripe = new Stripe(
+export const stripePromise = loadStripe(String(import.meta.env.VITE_STRIPE_PUBLIC_KEY))
+
+const stripe = new Stripe(
     import.meta.env.VITE_STRIPE_SECRET_KEY,
     {
         apiVersion: "2023-10-16",

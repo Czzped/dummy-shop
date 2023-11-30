@@ -3,7 +3,7 @@ import { CurrencyDollar } from "phosphor-react";
 import { Link } from "react-router-dom";
 
 export function ProductsCart() {
-    const { productsCartVisibility, removeProductOnCart, productsCart } = useProductsCartContext()
+    const { productsCartVisibility, isLoading, buyProductsOnCart, removeProductOnCart, productsCart } = useProductsCartContext()
     const totalAmount = productsCart.reduce((totalAmount, { default_price }) => {
         //@ts-ignore
         const price = (default_price.unit_amount) / 100
@@ -41,7 +41,9 @@ export function ProductsCart() {
                         }
                     </div>
                     <h3>Total Amount: {totalAmount}</h3>
-                    <button>Finish the Cart</button>
+                    <button onClick={buyProductsOnCart}>{
+                        isLoading ? "Loading" : "Finish Cart"
+                    }</button>
                     <hr />
 
                     <br /><br />
