@@ -74,7 +74,7 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
             lineItems: itens,
             mode: "subscription",
             successUrl: `${window.location.origin}/success`,
-            cancelUrl: `${window.location.origin}/cancel`
+            cancelUrl: `${window.location.origin}/`
         };
 
         try {
