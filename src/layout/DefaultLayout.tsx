@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify"
 
 export function DefaultLayout() {
     return (
-        <>
+        <div className="flex flex-col items-center min-h-screen p-4 gap-4">
             <Header />
             <main>
                 <ProductsCart />
@@ -14,6 +14,6 @@ export function DefaultLayout() {
                 <Outlet />
             </main>
             <Footer />
-        </>
+        </div>
     )
 }
