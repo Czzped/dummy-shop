@@ -1,7 +1,7 @@
-import { useState, createContext, useContext } from "react"
+import { useState, createContext, useContext, useEffect } from "react"
 import { ReactNode } from "react"
 import Stripe from "stripe"
-import { productsData } from "../lib/stripe"
+import { getStripeData } from "../lib/stripe"
 
 interface ProductsContextProps {
     products: Stripe.Product[],
@@ -15,17 +15,20 @@ interface ProductsContextProps {
 export const ProductsContext = createContext({} as ProductsContextProps)
 
 export function ProductsContextProvider({ children }: { children: ReactNode }) {
-    const [products, setProducts] = useState(productsData)
+    const [products, setProducts] = useState(Array<Stripe.Product>)
+
 
     function updateProductsData(newProductsData: Stripe.Product[]) {
         setProducts(newProductsData)
     }
 
-    function resetProductsData() {
+    async function resetProductsData() {
+        const { productsData } = await getStripeData()
         setProducts(productsData)
     }
 
     async function filterProducts(query: string) {
+        const { productsData } = await getStripeData()
         const lowerCaseQuery = query.toLocaleLowerCase()
         const filteredProducts = productsData.filter(product => product.name.toLocaleLowerCase().includes(lowerCaseQuery))
 
@@ -33,16 +36,22 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
     }
 
     async function filterProduct(id: string) {
+        const { productsData } = await getStripeData()
         const filteredProduct = productsData.find(product => product.id === id) as Stripe.Product
 
         return filteredProduct
     }
 
     async function filterCategory(category: string) {
+        const { productsData } = await getStripeData()
         const filteredProducts = productsData.filter(product => product.metadata.category === category)
 
         setProducts(filteredProducts)
     }
+
+    useEffect(() => {
+        resetProductsData()
+    }, [])
 
     const productsContext = {
         products,

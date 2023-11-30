@@ -1,7 +1,7 @@
 import { useState, createContext, useEffect, useContext } from "react"
 import { toast } from "react-toastify"
 import Stripe from "stripe"
-import { stripePromise } from "../lib/stripe"
+import { getStripeData } from "../lib/stripe"
 
 interface CartContextProps {
     productsCart: Stripe.Product[],
@@ -53,9 +53,10 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
 
     async function buyProductsOnCart() {
         if (productsCart.length === 0) {
-            return toast.error('Your cart are empty!')
+            return toast.error('The cart is empty!')
         }
 
+        const { stripePromise } = await getStripeData()
         const Stripe = await stripePromise
         setLoading(true);
 
