@@ -7,7 +7,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                primaryColor: "#572C57"
+                primaryColor: "#572C57",
+                linesColor: "#7C7C8A",
+                moneyColor: "#108810",
             }
         },
     },

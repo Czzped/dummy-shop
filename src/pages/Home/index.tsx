@@ -5,7 +5,7 @@ import { Dropdown } from "./components/Dropdown";
 export function Home() {
 
     return (
-        <section>
+        <section className="flex flex-col gap-6">
             <div>
                 <SearchBar />
                 <Dropdown />

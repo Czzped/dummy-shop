@@ -8,7 +8,7 @@ export function DefaultLayout() {
     return (
         <div className="flex flex-col items-center min-h-screen p-8 gap-4">
             <Header />
-            <main>
+            <main className="flex-1">
                 <ProductsCart />
                 <ToastContainer theme="dark" />
                 <Outlet />

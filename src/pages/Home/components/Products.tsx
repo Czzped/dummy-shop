@@ -10,7 +10,7 @@ export function Products() {
     const { addProductOnCart } = useProductsCartContext()
 
     return (
-        <>
+        <div className="flex justify-center flex-wrap gap-8">
             {
                 products.length > 0 ?
                     products.map((product: Stripe.Product) => {
@@ -19,18 +19,30 @@ export function Products() {
                         const price = (default_price.unit_amount) / 100
 
                         return (
-                            <div key={id}>
-                                <img src={images[0]} alt={`${name}-img`} />
-                                <h2>{name}</h2>
-                                <div>
-                                    <h3><CurrencyDollar color="#108810" size={30} />{price}</h3>
-                                    <h3>{metadata.rating}<Star size={30} color="#ffce00" weight="fill" /></h3>
-                                </div>
-                                <div>
-                                    <Link to={"/products/" + id}>
-                                        <button>see more</button>
-                                    </Link>
-                                    <button onClick={() => addProductOnCart(product)}>add to the cart</button>
+                            <div key={id} className="flex flex-col w-[80vw] rounded-xl duration-300 gap-4 border-2 border-linesColor md:w-[30rem] hover:mb-4">
+                                <Link
+                                    to={"/products/" + id}
+                                    className="flex flex-1 justify-center items-center p-8 md:min-h-[25rem]">
+                                    <img src={images[0]} alt={`${name}-img`} className="w-[50%]" />
+                                </Link>
+                                <div className="flex flex-col justify-between gap-4 p-4 min-h-[15rem] border-t-2 border-linesColor">
+                                    <h1 className="text-2xl font-normal">{name}</h1>
+                                    <div>
+                                        <div className="flex items-center">
+                                            <CurrencyDollar color="#108810" size={28} />
+                                            <h3 className="text-[25px] text-moneyColor">{price}</h3>
+                                        </div>
+                                        <div className="flex gap-1 items-center">
+                                            <Star color="#572C57" weight="fill" size={20} />
+                                            <h3 className="text-[18px] text-primaryColor">{metadata.rating}</h3>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <Link to={"/products/" + id}>
+                                            <button>see more</button>
+                                        </Link>
+                                        <button onClick={() => addProductOnCart(product)}>add to the cart</button>
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -39,6 +51,6 @@ export function Products() {
 
                     <h2>Oops...It seems that we don't have nothing in the moment:(</h2>
             }
-        </>
+        </div >
     )
 }
