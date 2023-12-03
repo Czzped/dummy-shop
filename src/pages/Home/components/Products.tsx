@@ -14,7 +14,7 @@ export function Products() {
                 products.length > 0 ?
                     products.map((product: Stripe.Product) => {
                         return (
-                            <ProductPainel product={product} />
+                            <ProductPainel key={product.id} product={product} />
                         )
                     })
                     :

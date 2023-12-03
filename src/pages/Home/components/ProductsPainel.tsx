@@ -8,7 +8,7 @@ import { useState } from "react";
 export function ProductPainel(props: { product: Stripe.Product }) {
     const { addProductOnCart } = useProductsCartContext()
 
-    const [isProductEyePainelVisible, setProductEyePainelVisible] = useState(false)
+    const [isProductEyeDivVisible, setProductEyeDivVisible] = useState(false)
 
     const { id, name, images, default_price, metadata } = props.product
     //@ts-ignore
@@ -18,19 +18,18 @@ export function ProductPainel(props: { product: Stripe.Product }) {
 
     return (
         <div
-            key={id}
-            onMouseOver={() => setProductEyePainelVisible(true)}
-            onMouseOut={() => setProductEyePainelVisible(false)}
-            className="flex flex-col w-[80vw] rounded-xl duration-300 border-2 border-linesColor md:w-[30rem] hover:mb-4">
+            onMouseOver={() => setProductEyeDivVisible(true)}
+            onMouseOut={() => setProductEyeDivVisible(false)}
+            className="flex flex-col w-[80vw] rounded duration-300 border-2 border-linesColor md:w-[30rem] hover:m-[0.3rem]">
             <Link
                 to={"/products/" + id}
                 className="flex flex-1 relative justify-center items-center p-8 md:min-h-[25rem]">
                 <img src={images[0]} alt={`${name}-img`} className="w-[50%]" />
                 {
-                    isProductEyePainelVisible ?
+                    isProductEyeDivVisible ?
                         (
-                            <div className="absolute bg-black w-full h-full opacity-50">
-                                <Eye size={50} className="z-50" />
+                            <div className="flex justify-center items-center absolute bg-black w-full h-full opacity-50">
+                                <Eye size={85} color="#572C57" />
                             </div>
                         )
                         :
