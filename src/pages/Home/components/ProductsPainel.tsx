@@ -20,6 +20,8 @@ export function ProductPainel(props: { product: Stripe.Product }) {
         <div
             onMouseOver={() => setProductEyeDivVisible(true)}
             onMouseOut={() => setProductEyeDivVisible(false)}
+            onTouchStart={() => setProductEyeDivVisible(true)}
+            onTouchEnd={() => setProductEyeDivVisible(false)}
             className="flex flex-col w-[80vw] rounded duration-300 border-2 border-linesColor md:w-[30rem] hover:m-[0.3rem]">
             <Link
                 to={"/products/" + id}
@@ -41,17 +43,20 @@ export function ProductPainel(props: { product: Stripe.Product }) {
                 <div>
                     <div className="flex items-center">
                         <CurrencyDollar color="#108810" size={30} />
-                        <h3 className="text-[28px] text-moneyColor">{price}</h3>
+                        <h3 className="text-[1.75rem] text-moneyColor">{price}</h3>
                     </div>
                     <div className="flex gap-1 items-center">
                         <Star color="#572C57" weight="fill" size={22} />
-                        <h3 className="text-[20px] text-primaryColor">{metadata.rating}</h3>
+                        <h3 className="text-[1.25rem] text-primaryColor">{metadata.rating}</h3>
                     </div>
                 </div>
 
                 <button
                     className="flex justify-center rounded-xl p-4 bg-secondaryColor hover:opacity-80"
-                    onClick={() => addProductOnCart(props.product)}>add to the cart</button>
+                    onClick={() => addProductOnCart(props.product)}
+                >
+                    add to the cart
+                </button>
 
             </div>
         </div>
