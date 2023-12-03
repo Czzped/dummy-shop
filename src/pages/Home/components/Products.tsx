@@ -29,12 +29,12 @@ export function Products() {
                                     <h1 className="text-2xl font-normal">{name}</h1>
                                     <div>
                                         <div className="flex items-center">
-                                            <CurrencyDollar color="#108810" size={28} />
-                                            <h3 className="text-[25px] text-moneyColor">{price}</h3>
+                                            <CurrencyDollar color="#108810" size={30} />
+                                            <h3 className="text-[28px] text-moneyColor">{price}</h3>
                                         </div>
                                         <div className="flex gap-1 items-center">
-                                            <Star color="#572C57" weight="fill" size={20} />
-                                            <h3 className="text-[18px] text-primaryColor">{metadata.rating}</h3>
+                                            <Star color="#572C57" weight="fill" size={22} />
+                                            <h3 className="text-[20px] text-primaryColor">{metadata.rating}</h3>
                                         </div>
                                     </div>
 
