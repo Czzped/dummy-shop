@@ -8,7 +8,7 @@ export function Header() {
     return (
         <header>
             <nav className="flex flex-col text-center items-center gap-4 w-[85vw] md:flex-row justify-between">
-                <h1 className="text-4xl border-l-8">Dummy <span className="text-primaryColor">Shop</span></h1>
+                <h1 className="text-4xl">Dummy <span className="text-primaryColor">Shop</span></h1>
 
                 <ul className="flex gap-4">
                     <li className="cursor-pointer duration-[0.2s] hover:text-primaryColor">

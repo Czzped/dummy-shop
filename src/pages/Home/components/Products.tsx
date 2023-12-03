@@ -37,12 +37,11 @@ export function Products() {
                                             <h3 className="text-[18px] text-primaryColor">{metadata.rating}</h3>
                                         </div>
                                     </div>
-                                    <div className="flex gap-4">
-                                        <Link to={"/products/" + id}>
-                                            <button>see more</button>
-                                        </Link>
-                                        <button onClick={() => addProductOnCart(product)}>add to the cart</button>
-                                    </div>
+
+                                    <button
+                                        className="flex justify-center rounded-xl p-4 bg-secondaryColor hover:opacity-80"
+                                        onClick={() => addProductOnCart(product)}>add to the cart</button>
+
                                 </div>
                             </div>
                         )
