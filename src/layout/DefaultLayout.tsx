@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify"
 
 export function DefaultLayout() {
     return (
-        <div className="flex flex-col items-center min-h-screen p-8 gap-8">
+        <div className="flex flex-col items-center min-h-screen p-8 gap-10">
             <Header />
             <main className="flex-1">
                 <ProductsCart />

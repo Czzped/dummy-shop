@@ -28,7 +28,7 @@ export function ProductPainel(props: { product: Stripe.Product }) {
                 {
                     isProductEyeDivVisible ?
                         (
-                            <div className="flex justify-center items-center absolute bg-black w-full h-full opacity-50">
+                            <div className="flex justify-center items-center absolute bg-black w-full h-full opacity-60">
                                 <Eye size={85} color="#572C57" />
                             </div>
                         )
