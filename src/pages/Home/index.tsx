@@ -5,7 +5,7 @@ import { CategoriesButtons } from "./components/CategoriesButtons";
 export function Home() {
 
     return (
-        <section className="flex flex-col gap-16">
+        <section className="flex flex-col p-8 gap-16">
             <div className="flex flex-col gap-6 items-center">
                 <SearchBar />
                 <CategoriesButtons />

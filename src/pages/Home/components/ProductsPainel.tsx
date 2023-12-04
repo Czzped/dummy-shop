@@ -1,7 +1,7 @@
 import Stripe from "stripe"
 import { Link } from "react-router-dom"
 
-import { Star, CurrencyDollar, Eye } from "phosphor-react";
+import { Star, Eye } from "phosphor-react";
 import { useProductsCartContext } from "../../../context/productsCartContext";
 import { useState } from "react";
 
@@ -41,13 +41,10 @@ export function ProductPainel(props: { product: Stripe.Product }) {
             <div className="flex flex-col justify-between gap-4 p-4 min-h-[15rem] border-t-2 border-linesColor">
                 <h1 className="text-2xl font-normal">{name}</h1>
                 <div>
-                    <div className="flex items-center">
-                        <CurrencyDollar color="#108810" size={30} />
-                        <h3 className="text-[1.75rem] text-moneyColor">{price}</h3>
-                    </div>
+                    <h3 className="text-[1.75rem] text-moneyColor">${price}</h3>
                     <div className="flex gap-1 items-center">
                         <Star color="#572C57" weight="fill" size={22} />
-                        <h3 className="text-[1.25rem] text-primaryColor">{metadata.rating}</h3>
+                        <h2 className="text-[1.25rem] text-primaryColor">{metadata.rating}</h2>
                     </div>
                 </div>
 
