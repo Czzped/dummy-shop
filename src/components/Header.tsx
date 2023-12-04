@@ -17,7 +17,9 @@ export function Header() {
                         </Link>
                     </li>
                     <li className="cursor-pointer duration-[0.2s] hover:text-primaryColor">
-                        <ShoppingCartSimple onClick={() => resetProductsCartVisibility()} size={30} />
+                        <button onClick={() => resetProductsCartVisibility()}>
+                            <ShoppingCartSimple size={30} />
+                        </button>
                     </li>
                 </ul>
             </nav>

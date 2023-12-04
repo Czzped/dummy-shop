@@ -8,6 +8,7 @@ interface CartContextProps {
     productsCartVisibility: boolean,
     isLoading: boolean,
     refreshCart: () => void,
+    clearCart: () => void,
     removeProductOnCart: (id: string) => void,
     resetProductsCartVisibility: () => void,
     addProductOnCart: (newProduct: Stripe.Product) => void,
@@ -26,6 +27,15 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
         const productsOnCartJSON: Stripe.Product[] = JSON.parse(productsOnCart)
 
         setProductsCart(productsOnCartJSON)
+    }
+
+    function clearCart() {
+        if (productsCart.length === 0) {
+            return toast.error('The cart is already empty')
+        }
+
+        localStorage.setItem('products-cart', '[]')
+        setProductsCart([])
     }
 
     function removeProductOnCart(id: string) {
@@ -105,6 +115,7 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
         productsCartVisibility,
         isLoading,
         refreshCart,
+        clearCart,
         removeProductOnCart,
         resetProductsCartVisibility,
         addProductOnCart,

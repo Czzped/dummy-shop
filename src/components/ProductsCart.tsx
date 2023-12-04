@@ -3,7 +3,7 @@ import { XCircle } from "phosphor-react";
 import { Link } from "react-router-dom";
 
 export function ProductsCart() {
-    const { productsCartVisibility, isLoading, resetProductsCartVisibility, buyProductsOnCart, removeProductOnCart, productsCart } = useProductsCartContext()
+    const { productsCartVisibility, isLoading, clearCart, resetProductsCartVisibility, buyProductsOnCart, removeProductOnCart, productsCart } = useProductsCartContext()
     const totalAmount = productsCart.reduce((totalAmount, { default_price }) => {
         //@ts-ignore
         const price = (default_price.unit_amount) / 100
@@ -67,8 +67,9 @@ export function ProductsCart() {
                     <div className="flex flex-col gap-4">
                         <button
                             className="flex justify-center p-1 w-[5rem] font-semibold rounded bg-red-500 hover:opacity-80"
+                            onClick={clearCart}
                         >
-                            clear all
+                            clear
                         </button>
                         <h3 className="flex items-end gap-4 text-xl">
                             Total Amount:
