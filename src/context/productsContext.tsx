@@ -45,6 +45,7 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
     async function filterCategory(category: string) {
         const { productsData } = await getStripeData()
         const filteredProducts = productsData.filter(product => product.metadata.category === category)
+        console.log(productsData)
 
         setProducts(filteredProducts)
     }

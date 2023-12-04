@@ -8,7 +8,7 @@ export function Products() {
 
 
     return (
-        <div className="flex justify-center flex-wrap gap-8">
+        <div className="flex flex-1 flex-wrap justify-center gap-8">
             {
 
                 products.length > 0 ?
