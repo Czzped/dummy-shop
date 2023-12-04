@@ -10,7 +10,7 @@ export function DefaultLayout() {
             <Header />
             <ProductsCart />
             <main className="flex-1">
-                <ToastContainer />
+                <ToastContainer theme="dark" />
                 <Outlet />
             </main>
             <Footer />

@@ -38,7 +38,7 @@ export function ProductPainel(props: { product: Stripe.Product }) {
                         <div></div>
                 }
             </Link>
-            <div className="flex flex-col justify-between gap-4 p-4 min-h-[15rem] border-t-2 border-linesColor">
+            <div className="flex flex-col justify-between gap-4 p-4 min-h-[15rem] text-white bg-black border-t-2 border-linesColor">
                 <h1 className="text-2xl font-normal">{name}</h1>
                 <div>
                     <h3 className="text-[1.75rem] text-moneyColor">${price}</h3>
@@ -49,7 +49,7 @@ export function ProductPainel(props: { product: Stripe.Product }) {
                 </div>
 
                 <button
-                    className="flex justify-center rounded-xl p-4 bg-secondaryColor hover:opacity-80"
+                    className="flex justify-center rounded p-4 bg-primaryColor hover:opacity-80"
                     onClick={() => addProductOnCart(props.product)}
                 >
                     add to the cart
