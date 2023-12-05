@@ -27,7 +27,7 @@ export function ProductsCart() {
                         </button>
                     </div>
 
-                    <div className="flex flex-col flex-1 w-full overflow-auto max-h-[80%] gap-10">
+                    <div className="flex flex-col flex-1 w-full overflow-auto gap-10">
 
                         {
                             productsCart.map(product => {
@@ -38,7 +38,7 @@ export function ProductsCart() {
                                     <div className="flex gap-4 w-full lg:max-h-none" key={product.id}>
                                         <Link
                                             to={"/products/" + product.id}
-                                            className="flex justify-center items-center rounded bg-white max-w-[40%] p-2 hover:opacity-80"
+                                            className="flex justify-center items-center rounded bg-white w-[50%] p-2 hover:opacity-80"
                                         >
                                             <img src={product.images[0]} alt={`${product.name}-img`} className="max-w-[50%]" />
                                         </Link>
