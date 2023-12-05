@@ -4,7 +4,7 @@ import { useProductsCartContext } from "../../../context/productsCartContext";
 
 import { Button } from "../../../components/Button";
 
-import { Star, CurrencyDollar } from "phosphor-react";
+import { Star } from "phosphor-react";
 
 import "react-toastify/dist/ReactToastify.css";
 
