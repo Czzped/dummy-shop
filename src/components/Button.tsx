@@ -1,4 +1,4 @@
-export function Button(props: { eventOnClick: () => void, buttonText: string, additionalStyle?: string }) {
+export function Button(props: { eventOnClick?: () => void, buttonText: string, additionalStyle?: string }) {
 
     return (
         <button
