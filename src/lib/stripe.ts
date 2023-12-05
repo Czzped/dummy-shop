@@ -3,28 +3,28 @@ import Stripe from "stripe";
 
 let stripePromise: any
 
-export async function getStripeData() {
-    if (!stripePromise) {
-        stripePromise = loadStripe(String(import.meta.env.VITE_STRIPE_PUBLIC_KEY))
+if (!stripePromise) {
+    stripePromise = loadStripe(String(import.meta.env.VITE_STRIPE_PUBLIC_KEY))
+}
+
+const stripe = new Stripe(
+    import.meta.env.VITE_STRIPE_SECRET_KEY,
+    {
+        apiVersion: "2023-10-16",
+        appInfo: {
+            name: "Ignite Shop",
+        },
     }
+);
 
-    const stripe = new Stripe(
-        import.meta.env.VITE_STRIPE_SECRET_KEY,
-        {
-            apiVersion: "2023-10-16",
-            appInfo: {
-                name: "Ignite Shop",
-            },
-        }
-    );
+const { data } = await stripe.products.list({
+    expand: ["data.default_price"],
+    limit: 1000
+});
 
-    const { data } = await stripe.products.list({
-        expand: ["data.default_price"],
-        limit: 1000
-    });
+const productsData = data.filter(product => product.metadata.available !== 'false')
 
-    const productsData = data.filter(product => product.metadata.available !== 'false')
-
+export async function getStripeData() {
     return {
         stripePromise,
         productsData
