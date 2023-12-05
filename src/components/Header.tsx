@@ -6,8 +6,10 @@ export function Header() {
     const { resetProductsCartVisibility } = useProductsCartContext()
 
     return (
-        <header>
-            <nav className="flex flex-col text-center items-center p-8 gap-4 w-[85vw] md:flex-row justify-between">
+        <header className="fixed z-20 flex w-full bg-black">
+            <nav
+                className="flex flex-col w-full items-center text-white text-center p-4 gap-4 md:flex-row justify-between"
+            >
                 <h1 className="text-4xl">Dummy <span className="text-primaryColor">Shop</span></h1>
 
                 <ul className="flex gap-4">

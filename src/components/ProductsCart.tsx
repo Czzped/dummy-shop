@@ -13,8 +13,8 @@ export function ProductsCart() {
 
     return (
         productsCartVisibility ?
-            <div className="fixed flex justify-end items-center w-full z-10">
-                <div className="flex justify-center flex-col gap-8 p-8 h-screen bg-thirdColor text-white md:w-[40vw]">
+            <div className="fixed flex justify-end items-center w-full z-20">
+                <div className="flex justify-center flex-col gap-8 p-8 h-screen w-screen bg-thirdColor text-white md:w-[40vw]">
                     <div className="flex justify-between items-center">
                         <h1 className="text-3xl">Products <span className="text-primaryColor">Cart</span></h1>
                         <button
@@ -39,9 +39,8 @@ export function ProductsCart() {
                                         >
                                             <img src={product.images[0]} alt={`${product.name}-img`} className="max-w-[50%]" />
                                         </Link>
-
                                         <div
-                                            className="flex flex-col justify-between gap-4 px-2">
+                                            className="flex flex-col justify-between w-full gap-4 px-2">
                                             <div className="flex flex-col gap-2 break-words">
                                                 <h2 className="text-xl">{product.name}</h2>
                                                 <h2>
