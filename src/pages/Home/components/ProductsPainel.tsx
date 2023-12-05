@@ -1,5 +1,6 @@
 import Stripe from "stripe"
 import { Link } from "react-router-dom"
+import { Button } from "../../../components/Button";
 
 import { Star, Eye } from "phosphor-react";
 import { useProductsCartContext } from "../../../context/productsCartContext";
@@ -46,13 +47,7 @@ export function ProductPainel(props: { product: Stripe.Product }) {
                     </div>
                 </div>
 
-                <button
-                    className="flex justify-center rounded p-4 bg-primaryColor hover:opacity-80"
-                    onClick={() => addProductOnCart(props.product)}
-                >
-                    add to the cart
-                </button>
-
+                <Button eventOnClick={() => addProductOnCart(props.product)} buttonText="add to the cart" additionalStyle="p-4" />
             </div>
         </div>
     )

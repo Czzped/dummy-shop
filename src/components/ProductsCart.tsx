@@ -1,6 +1,9 @@
 import { useProductsCartContext } from "../context/productsCartContext"
+
 import { XCircle } from "phosphor-react";
 import { Link } from "react-router-dom";
+
+import { Button } from "./Button";
 
 export function ProductsCart() {
     const { productsCartVisibility, isLoading, clearCart, resetProductsCartVisibility, buyProductsOnCart, removeProductOnCart, productsCart } = useProductsCartContext()
@@ -50,12 +53,7 @@ export function ProductsCart() {
                                                 </h2>
                                             </div>
 
-                                            <button
-                                                onClick={() => removeProductOnCart(product.id)}
-                                                className="flex justify-center p-2 font-semibold rounded bg-primaryColor hover:opacity-80"
-                                            >
-                                                remove product
-                                            </button>
+                                            <Button eventOnClick={() => removeProductOnCart(product.id)} buttonText="remove product" additionalStyle="p-2" />
                                         </div>
                                     </div>
                                 )
@@ -77,14 +75,11 @@ export function ProductsCart() {
                             </span>
                         </h3>
 
-                        <button
-                            onClick={buyProductsOnCart}
-                            className="flex justify-center p-4 font-semibold rounded bg-primaryColor hover:opacity-80"
-                        >
-                            {
-                                isLoading ? "Loading..." : "Finish Cart"
-                            }
-                        </button>
+                        <Button
+                            eventOnClick={buyProductsOnCart}
+                            buttonText={isLoading ? "Loading..." : "Finish Cart"}
+                            additionalStyle="p-4"
+                        />
                     </div>
                 </div >
             </div >

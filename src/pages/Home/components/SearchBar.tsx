@@ -14,7 +14,7 @@ export function SearchBar() {
                 type="text"
                 placeholder="What Are You Looking For?"
                 onChange={(ev) => handleSearch(ev)}
-                className="w-[75vw] p-2 outline-none text-xl border-b-4 duration-150 border-secondaryColor focus:border-primaryColor md:w-[40rem]"
+                className="w-[75vw] p-2 outline-none text-xl border-b-2 duration-150 border-linesColor focus:border-primaryColor md:w-[40rem]"
             />
         </>
     )
