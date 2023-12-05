@@ -17,7 +17,7 @@ export function ProductsCart() {
     return (
         productsCartVisibility ?
             <div className="fixed flex justify-end items-center w-full z-20">
-                <div className="flex justify-center flex-col gap-8 p-8 h-screen w-screen bg-thirdColor text-white md:w-[40vw]">
+                <div className="flex justify-center flex-col gap-8 p-8 h-screen w-screen bg-thirdColor text-white lg:w-[40vw]">
                     <div className="flex justify-between items-center">
                         <h1 className="text-3xl">Products <span className="text-primaryColor">Cart</span></h1>
                         <button
@@ -35,10 +35,10 @@ export function ProductsCart() {
                                 const price = (product.default_price.unit_amount) / 100
 
                                 return (
-                                    <div className="flex gap-4 w-full lg:max-h-none" key={product.id}>
+                                    <div className="flex gap-4 w-full" key={product.id}>
                                         <Link
                                             to={"/products/" + product.id}
-                                            className="flex justify-center items-center rounded bg-white max-w-[40%] p-2 hover:opacity-80"
+                                            className="flex justify-center items-center rounded bg-white w-[70%] p-2 hover:opacity-80"
                                         >
                                             <img src={product.images[0]} alt={`${product.name}-img`} className="max-w-[50%]" />
                                         </Link>
