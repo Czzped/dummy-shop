@@ -21,10 +21,10 @@ export function ProductPainel(props: { product: Stripe.Product }) {
         <div
             onMouseOver={() => setProductEyeDivVisible(true)}
             onMouseOut={() => setProductEyeDivVisible(false)}
-            className="flex flex-col w-[90vw] rounded duration-300 border-2 border-linesColor md:w-[30rem] hover:m-[0.3rem]">
+            className="flex flex-col w-[90vw] duration-300 md:w-[30rem] hover:m-[0.3rem]">
             <Link
                 to={"/products/" + id}
-                className="flex flex-1 relative justify-center items-center p-8 md:min-h-[25rem]">
+                className="flex flex-1 relative justify-center items-center rounded-t border-2 border-b-0 border-t-linesColor border-x-linesColor p-8 md:min-h-[25rem]">
                 <img src={images[0]} alt={`${name}-img`} className="w-[50%]" />
                 {
                     isProductEyeDivVisible ?
@@ -37,7 +37,7 @@ export function ProductPainel(props: { product: Stripe.Product }) {
                         <div></div>
                 }
             </Link>
-            <div className="flex flex-col justify-between gap-4 p-4 min-h-[15rem] text-white bg-black border-t-2 border-linesColor">
+            <div className="flex flex-col justify-between rounded-b gap-4 p-4 min-h-[15rem] text-white bg-black ">
                 <h1 className="text-2xl font-normal">{name}</h1>
                 <div>
                     <h3 className="text-[1.75rem] text-moneyColor">${price}</h3>
