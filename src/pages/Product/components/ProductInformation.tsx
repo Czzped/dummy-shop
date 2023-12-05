@@ -29,7 +29,7 @@ export function ProductInformation({ product }: IProductInformationProps) {
 
     return (
         <section className="flex flex-col justify-center items-center gap-4 p-8 lg:flex-row">
-            <img src={images[0]} alt={`${name}-thumbnail`} className="w-[25%]" />
+            <img src={images[0]} alt={`${name}-thumbnail`} className="w-auto lg:w-[25%]" />
 
             <div className="flex flex-col gap-20 p-8">
                 <div className="flex flex-col gap-4">
