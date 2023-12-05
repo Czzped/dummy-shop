@@ -31,7 +31,7 @@ export function ProductsCartContextProvider({ children }: { children: React.Reac
 
     function clearCart() {
         if (productsCart.length === 0) {
-            return toast.error('The cart is already empty')
+            return toast.error('The cart is empty')
         }
 
         localStorage.setItem('products-cart', '[]')

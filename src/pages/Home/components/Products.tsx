@@ -19,7 +19,7 @@ export function Products() {
                     })
                     :
 
-                    <h2>Oops...It seems that we don't have nothing in the moment:(</h2>
+                    <h2 className="font-semibold">Oops...It seems that we don't have nothing in the moment :(</h2>
             }
         </div >
     )
