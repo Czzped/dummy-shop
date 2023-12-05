@@ -35,15 +35,15 @@ export function ProductsCart() {
                                 const price = (product.default_price.unit_amount) / 100
 
                                 return (
-                                    <div className="flex gap-4 w-full" key={product.id}>
+                                    <div className="flex gap-4 w-full lg:max-h-none" key={product.id}>
                                         <Link
                                             to={"/products/" + product.id}
-                                            className="flex justify-center items-center rounded bg-white w-[70%] p-2 hover:opacity-80"
+                                            className="flex justify-center items-center rounded bg-white max-w-[40%] p-2 hover:opacity-80"
                                         >
                                             <img src={product.images[0]} alt={`${product.name}-img`} className="max-w-[50%]" />
                                         </Link>
                                         <div
-                                            className="flex flex-col justify-between w-full gap-4 px-2">
+                                            className="flex flex-col justify-between w-full gap-4 px-4">
                                             <div className="flex flex-col gap-2 break-words">
                                                 <h2 className="text-xl">{product.name}</h2>
                                                 <h2>

@@ -21,7 +21,7 @@ export function ProductPainel(props: { product: Stripe.Product }) {
         <div
             onMouseOver={() => setProductEyeDivVisible(true)}
             onMouseOut={() => setProductEyeDivVisible(false)}
-            className="flex flex-col w-[90vw] duration-300 md:w-[30rem] hover:m-[0.3rem]">
+            className="flex flex-col duration-300 md:w-[30rem] hover:m-[0.3rem]">
             <Link
                 to={"/products/" + id}
                 className="flex flex-1 relative justify-center items-center rounded-t border-2 border-b-0 border-t-linesColor border-x-linesColor p-8 md:min-h-[25rem]">
