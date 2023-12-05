@@ -19,7 +19,13 @@ export function ProductInformation({ product }: IProductInformationProps) {
     //@ts-ignore
     const price = (default_price.unit_amount) / 100
 
+    const { resetProductsData } = useProductsContext()
     const { addProductOnCart } = useProductsCartContext()
+
+
+    useEffect(() => {
+        resetProductsData()
+    }, [])
 
     return (
         <section className="flex flex-col justify-center items-center gap-4 px-8 lg:flex-row">
