@@ -2,7 +2,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
 
 let stripePromise: any
-let productsData: any
+let productsData: Stripe.Product[]
 
 export async function getStripeData() {
     if (!stripePromise) {
